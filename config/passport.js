@@ -2,7 +2,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcryptjs')
 
-const db =require('../models')
+const db = require('../models')
 const User = db.User
 
 module.exports = app => {
@@ -12,7 +12,7 @@ module.exports = app => {
 
   // 設定本地登入策略
   passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
-    User.findOne({ where:{email} })
+    User.findOne({ where: { email } })
       .then(user => {
         if (!user) {
           return done(null, false, req.flash('warning_msg', 'That email is not registered!'))
@@ -29,7 +29,7 @@ module.exports = app => {
 
   // 設定序列化與反序列化
   passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user.id)
   })
   passport.deserializeUser((id, done) => {
     User.findByPk(id)

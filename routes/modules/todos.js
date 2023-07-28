@@ -17,7 +17,6 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
 router.get('/:id', (req, res) => {
   const UserId = req.user.id
   const id = req.params.id
@@ -59,7 +58,7 @@ router.delete('/:id', (req, res) => {
   const id = req.params.id
   return Todo.findOne({ where: { id, UserId } })
     .then(todo => todo.destroy())
-    //To delete rows of data from your SQL table using Sequelize, you need to use the provided destroy() method.
+    // To delete rows of data from your SQL table using Sequelize, you need to use the provided destroy() method.
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })

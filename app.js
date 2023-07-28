@@ -8,7 +8,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
-const routes =require('./routes')
+const routes = require('./routes')
 
 const usePassport = require('./config/passport')
 
@@ -31,7 +31,7 @@ app.use(methodOverride('_method'))
 usePassport(app)
 
 app.use(flash())
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
   res.locals.success_msg = req.flash('success_msg')
